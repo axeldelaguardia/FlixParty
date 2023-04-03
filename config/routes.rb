@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root "welcome#index"
 
   get "/register", controller: "users", to: "users#new"
+	get "/login", to: "users#login_form"
+	post "/login", to: "users#login_user"
 
 	resources :users, only: [:create, :show] do
 		resources :discover, only: :index
@@ -13,5 +15,4 @@ Rails.application.routes.draw do
 			resources :parties, only: [:show, :new, :create]
 		end
 	end
-	
 end

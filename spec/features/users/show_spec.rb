@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "User Show Page" do
   before(:each) do
-    @user_1 = User.create(name: "Bob", email: "bob@myemail.com")
+    @user_1 = User.create(name: "Bob", email: "bob@myemail.com", password: "securepassword", password_confirmation: "securepassword")
 		@party = @user_1.parties.create!(runtime: 110, duration: 120, time: "12:00:00", date: "2021-08-01")
   end
 
@@ -36,8 +36,8 @@ describe "User Show Page" do
 	end
 
 	describe "dashboard: viewing parties" do
-		let!(:user_2) { User.create!(name: "Mary", email: "mary@email.com") }
-		let!(:user_3) { User.create!(name: "Lisa", email: "lisa@email.com") }
+		let!(:user_2) { User.create!(name: "Mary", email: "mary@email.com", password: "securepassword", password_confirmation: "securepassword") }
+		let!(:user_3) { User.create!(name: "Lisa", email: "lisa@email.com", password: "securepassword", password_confirmation: "securepassword") }
 
 		let!(:party_1) { Party.create!(runtime: 100, duration: 120, date: "4/4/2023", time: "4:00", movie_id: 76341, image_path: "/hBcY0fE9pfXzvVaY4GKarweriG2.jpg", title: "Movie 1") }
 		let!(:party_2) { Party.create!(runtime: 100, duration: 136, date: "4/7/2023", time: "5:00", movie_id: 76342, image_path: "/hBcY0fE9pfXzvVaY4GKarweriG2.jpg", title: "Movie 2") }

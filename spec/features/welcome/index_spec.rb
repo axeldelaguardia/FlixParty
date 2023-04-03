@@ -16,8 +16,8 @@ describe "Welcome Index Page" do
   end
 
   it "list existing users" do
-    user_1 = User.create(name: "Bob", email: "bob@myemail.com")
-    user_2 = User.create(name: "Sally", email: "sally@myemail.com")  
+    user_1 = User.create(name: "Bob", email: "bob@myemail.com", password: "securepassword", password_confirmation: "securepassword")
+    user_2 = User.create(name: "Sally", email: "sally@myemail.com", password: "securepassword", password_confirmation: "securepassword")  
     visit root_path   
 
     expect(page).to have_content(user_1.name)      

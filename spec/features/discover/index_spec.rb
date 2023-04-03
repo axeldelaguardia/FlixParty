@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "Discover Index Page" do
   before(:each) do
-    @user_1 = User.create(name: "Bob", email: "bob@myemail.com")
+    @user_1 = User.create(name: "Bob", email: "bob@myemail.com", password: "securepassword", password_confirmation: "securepassword")
 		@party = @user_1.parties.create!(runtime: 100, duration: 120, time: "12:00:00", date: "2021-08-01")
   end
 

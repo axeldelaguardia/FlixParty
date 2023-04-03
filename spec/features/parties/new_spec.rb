@@ -2,11 +2,11 @@ require "rails_helper"
 
 describe "Parties New Page", :vcr do
   before(:each) do
-    @user_1 = User.create!(name: "Bob", email: "bob@myemail.com")
-    @user_2 = User.create!(name: "Lisa", email: "lisa@myemail.com")
-    @user_3 = User.create!(name: "Sally", email: "sally@myemail.com")
-    @user_4 = User.create!(name: "John", email: "john@myemail.com")
-    @user_5 = User.create!(name: "Joe", email: "joe@myemail.com")
+    @user_1 = User.create!(name: "Bob", email: "bob@myemail.com", password: "securepassword", password_confirmation: "securepassword")
+    @user_2 = User.create!(name: "Lisa", email: "lisa@myemail.com", password: "securepassword", password_confirmation: "securepassword")
+    @user_3 = User.create!(name: "Sally", email: "sally@myemail.com", password: "securepassword", password_confirmation: "securepassword")
+    @user_4 = User.create!(name: "John", email: "john@myemail.com", password: "securepassword", password_confirmation: "securepassword")
+    @user_5 = User.create!(name: "Joe", email: "joe@myemail.com", password: "securepassword", password_confirmation: "securepassword")
 
 		visit "/users/#{@user_1.id}/movies/278/parties/new?title=The%20Shawshank%20Redemption&runtime=147"
   end

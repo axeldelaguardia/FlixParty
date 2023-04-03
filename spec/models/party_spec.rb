@@ -22,9 +22,9 @@ describe Party do
 	end
 
 	describe "::instance methods" do
-		let!(:user_1) { User.create!(name: "John", email: "john@email.com") }
-		let!(:user_2) { User.create!(name: "Mary", email: "mary@email.com") }
-		let!(:user_3) { User.create!(name: "Lisa", email: "lisa@email.com") }
+		let!(:user_1) { User.create!(name: "John", email: "john@email.com", password: "securepassword", password_confirmation: "securepassword") }
+		let!(:user_2) { User.create!(name: "Mary", email: "mary@email.com", password: "securepassword", password_confirmation: "securepassword") }
+		let!(:user_3) { User.create!(name: "Lisa", email: "lisa@email.com", password: "securepassword", password_confirmation: "securepassword") }
 
 		let!(:party_1) { Party.create!(runtime: 110, duration: 120, date: "4/4/2023", time: "4:00", movie_id: 76341) }
 		let!(:party_2) { Party.create!(runtime: 120, duration: 136, date: "4/7/2023", time: "5:00", movie_id: 76342) }

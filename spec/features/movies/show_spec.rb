@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "Movie Show Page", :vcr do
 	before(:each) do
-    @user_1 = User.create(name: "Bob", email: "bob@myemail.com")
+    @user_1 = User.create(name: "Bob", email: "bob@myemail.com", password: "securepassword", password_confirmation: "securepassword")
     # visit user_discover_index_path(@user_1)
     # fill_in :movie_title, with: "Shawshank"
     # click_button "Search"
