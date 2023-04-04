@@ -1,6 +1,7 @@
 <div class='container'>
 	<h1 class='title'>Welcome to Viewing Party</h1>
 
-	<p><%= button_to "Create New User", register_path, class: "btn btn-success", method: :get %></p>
-	<p><%= link_to "Log In", login_path, class: "btn btn-success", method: :get %></p>
+	<% unless @user %>
+		<p><%= button_to "Create New User", register_path, class: "btn btn-success", method: :get %></p>
+	<% end %>
 </div>
