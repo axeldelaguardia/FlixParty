@@ -1,4 +1,4 @@
- <h3 class= "title has-test_centered"><%= @user.name %>'s Dashboard</h3>
+ <h3><%= @user.name %>'s Dashboard</h3>
 
 	<%= button_to "Discover Movies", user_discover_index_path(@user), class: "btn btn-outline-primary", method: :get %>
 
@@ -11,19 +11,21 @@
           <% @party_invites.each do |party| %>
             <li id=<%= party.id %>>
 							<h4><%= "Party ##{party.id}"%></h4>
-							<img src=<%= "https://image.tmdb.org/t/p/w300#{party.image_path}"  %>>
-							<p><%= party.title %></p>
-							<p>Date: <%= party.date %></p>
-							<p>Time: <%= party.time.strftime("%H:%M") %></p>
-							<p>Host: <%= party.host.name %></p>
-							<p><b>Attendees:</b></p>
-							<% party.users.each do |user| %>
-								<% if user == @user %>
-									<p><b><%= user.name %></b></p>
-								<% else %>
-									<%= user.name %>
+							<img src=<%= "https://image.tmdb.org/t/p/w200#{party.image_path}"  %>>
+							<div class="p1">
+								<p><%= party.title %></p>
+								<p>Date: <%= party.date.strftime("%m/%d/%Y") %></p>
+								<p>Time: <%= party.time.strftime("%I:%M %p") %></p>
+								<p>Host: <%= party.host.name %></p>
+								<p><b>Attendees:</b></p>
+								<% party.users.each do |user| %>
+									<% if user == @user %>
+										<p><b><%= user.name %></b></p>
+									<% else %>
+										<%= user.name %>
+									<% end %>
 								<% end %>
-							<% end %>
+							</div>
 						</li>
           <% end %>
         </ul>
@@ -35,11 +37,10 @@
           <% @my_parties.each do |party| %>
             <li id=<%= party.id %>>
 							<h4><%= "Party ##{party.id}"%></h4>
-							<img src=<%= "https://image.tmdb.org/t/p/w300#{party.image_path}" %>>
+							<img src=<%= "https://image.tmdb.org/t/p/w200#{party.image_path}" %>>
 							<p><%= party.title %></p>
-							<p>Date: <%= party.date %></p>
-							<p>Time: <%= party.time.strftime("%H:%M") %></p>
-							<p>Host: <%= party.host.name %></p>
+							<p>Date: <%= party.date.strftime("%m/%d/%Y") %></p>
+							<p>Time: <%= party.time.strftime("%I:%M %p") %></p>
 							<p><b>Attendees:</b></p>
 							<% party.users.each do |user| %>
 								<p><%= user.name unless user.name == @user.name%></p>

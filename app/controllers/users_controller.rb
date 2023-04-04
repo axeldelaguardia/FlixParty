@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find(params[:id])
+		@user = User.find(session[:user_id])
     @my_parties = @user.my_parties
 		@party_invites = @user.party_invites
 	end
@@ -38,13 +38,18 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def logout_user
+		session.delete(:user_id)
+		redirect_to root_path
+	end
+
 	private
 	def user_params
 		params.require(:user).permit(:name, :email, :password, :password_confirmation)
 	end
 
 	def invalid_credentials
-		flash[:error] = "Email or password is invalid"
-		render :login_form
+		flash.now[:alert] = "Email or password is invalid"
+		render :login_form, status: 400
 	end
 end

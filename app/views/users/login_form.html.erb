@@ -1,7 +1,14 @@
-<%= form_with url: login_path, method: :post, local: true do |f| %>
-	<%= f.label :email, "Email" %>
-	<%= f.text_field :email %>
-	<%= f.label :password, "Password" %>
-	<%= f.text_field :password %>
-	<%= f.submit "Log In" %>
-<% end %>
+<div id="register_form">
+	<p>Log In</p>
+	<%= form_with url: login_path, method: :post, local: true do |f| %>
+		<p>
+			<%= f.label :email, "Email" %>
+			<%= f.text_field :email %>
+		</p>
+		<p>
+			<%= f.label :password, "Password" %>
+			<%= f.password_field :password %>
+		</p>
+		<%= f.submit "Log In" %>
+	<% end %>
+</div>
