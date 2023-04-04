@@ -1,9 +1,14 @@
 class PartiesController < ApplicationController
 
 	def new
-		@party = Party.new
-		@movie = movie_params
-		@users = User.all
+		if current_user.nil?
+			redirect_to user_movie_path(params[:user_id], params[:movie_id])
+			flash[:alert] = "Must be logged in to continue!"
+		else
+			@party = Party.new
+			@movie = movie_params
+			@users = User.all
+		end
 	end
 
 	def create

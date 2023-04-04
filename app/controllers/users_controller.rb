@@ -16,9 +16,13 @@ class UsersController < ApplicationController
 
 	def show
 		@user = current_user
-		# @user = User.find(session[:user_id]) if session[:user_id]
-    @my_parties = @user.my_parties
-		@party_invites = @user.party_invites
+		if @user
+			@my_parties = @user.my_parties
+			@party_invites = @user.party_invites
+		else
+			redirect_to root_path
+			flash[:alert] = "Must be logged in to continue!"
+		end
 	end
 
 	def login_form
