@@ -22,6 +22,9 @@ describe 'register page', :vcr do
 			click_button "Register"
 			
       user = User.find_by(email: "johndoe@email.com")
+
+			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
 			expect(current_path).to eq(user_path(user))
 		end
 	end
@@ -38,7 +41,11 @@ describe 'register page', :vcr do
 				click_on "Register"
 			end
 
-			expect(current_path).to eq(user_path(User.last))
+			user = User.last
+
+			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+			expect(current_path).to eq(user_path(user))
 		end
 	end
 

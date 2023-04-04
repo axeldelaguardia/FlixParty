@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-	# before_action :current_user
+	helper_method :current_user
 	before_action :all_users
 
 	def current_user

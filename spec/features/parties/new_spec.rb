@@ -7,7 +7,7 @@ describe "Parties New Page", :vcr do
     @user_3 = User.create!(name: "Sally", email: "sally@myemail.com", password: "securepassword", password_confirmation: "securepassword")
     @user_4 = User.create!(name: "John", email: "john@myemail.com", password: "securepassword", password_confirmation: "securepassword")
     @user_5 = User.create!(name: "Joe", email: "joe@myemail.com", password: "securepassword", password_confirmation: "securepassword")
-
+		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
 		visit "/users/#{@user_1.id}/movies/278/parties/new?title=The%20Shawshank%20Redemption&runtime=147"
   end
 

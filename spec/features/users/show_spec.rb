@@ -4,6 +4,8 @@ describe "User Show Page" do
   before(:each) do
     @user_1 = User.create(name: "Bob", email: "bob@myemail.com", password: "securepassword", password_confirmation: "securepassword")
 		@party = @user_1.parties.create!(runtime: 110, duration: 120, time: "12:00:00", date: "2021-08-01")
+		
+		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
   end
 
   it "can see the users name's dashboard at the top of the page" do
@@ -55,12 +57,14 @@ describe "User Show Page" do
 		let!(:user_party_9) { UserParty.create!(user: user_2, party: party_4, host: true) }
 
 		it "displays viewing parties that the user has been invited to" do
-			visit user_path(@user_1)
+			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
 
+			visit user_path(@user_1)
+			
 			expect(page).to have_content("Movie 1")
 			expect(page).to have_content("Movie 3")
 			expect(page).to have_content("Movie 4")
-			expect(page).to have_xpath("//img[contains(@src,'https://image.tmdb.org/t/p/w300/hBcY0fE9pfXzvVaY4GKarweriG2.jpg')]")
+			expect(page).to have_xpath("//img[contains(@src,'https://image.tmdb.org/t/p/w200/hBcY0fE9pfXzvVaY4GKarweriG2.jpg')]")
 		end
 	end
 end

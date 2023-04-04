@@ -3,11 +3,9 @@ require "rails_helper"
 describe "Movie Show Page", :vcr do
 	before(:each) do
     @user_1 = User.create(name: "Bob", email: "bob@myemail.com", password: "securepassword", password_confirmation: "securepassword")
-    # visit user_discover_index_path(@user_1)
-    # fill_in :movie_title, with: "Shawshank"
-    # click_button "Search"
 
-		# click_link "Movie: The Shawshank Redemption"
+		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
+		
 		visit "/users/#{@user_1.id}/movies/278"
   end
 
