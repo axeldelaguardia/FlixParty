@@ -30,7 +30,7 @@ RSpec.describe "Logging In as a Registered User" do
 			fill_in :password, with: "password"
 			click_button "Log In"
 
-			expect(current_path).to eq(user_path(User.last))
+			expect(current_path).to eq(user_path)
 		end
 
 		it "does not let user log in if email is invalid" do

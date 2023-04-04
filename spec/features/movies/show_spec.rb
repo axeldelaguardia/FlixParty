@@ -7,17 +7,17 @@ describe "Movie Show Page", :vcr do
 	
 			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
 	
-			visit "/users/#{@user_1.id}/movies/278"
+			visit "/dashboard/movies/278"
 		end
 	
-		it { expect(current_path).to eq("/users/#{@user_1.id}/movies/278") }
+		it { expect(current_path).to eq("/dashboard/movies/278") }
 
 		it "has a button to create a viewing party" do
 			expect(page).to have_button("Create Viewing Party")
 
 			click_button "Create Viewing Party"
 
-			expect(current_path).to eq(new_user_movie_party_path(@user_1, 278))
+			expect(current_path).to eq(new_user_movie_party_path(278))
 		end
 
 		it "has a button to return to Discovery Page" do
@@ -41,17 +41,16 @@ describe "Movie Show Page", :vcr do
 		end
   end
 
-
 	describe "creating a movie party when not logged in" do
 		before(:each) do
-			visit "/users/1/movies/278"
+			visit "/dashboard/movies/278"
 		end
 
 		it "redirects to movie show page with a message saying you must be logged in" do
 			expect(page).to_not have_content("Must be logged in to continue!")
 
 			click_button "Create Viewing Party"
-			
+
 			expect(page).to have_content("Must be logged in to continue!")
 		end
 	end

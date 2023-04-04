@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    @user ||= User.find(session[:user_id]) if session[:user_id]
+    @user = current_user
   end
 end

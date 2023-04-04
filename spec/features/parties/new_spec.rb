@@ -8,7 +8,7 @@ describe "Parties New Page", :vcr do
     @user_4 = User.create!(name: "John", email: "john@myemail.com", password: "securepassword", password_confirmation: "securepassword")
     @user_5 = User.create!(name: "Joe", email: "joe@myemail.com", password: "securepassword", password_confirmation: "securepassword")
 		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
-		visit "/users/#{@user_1.id}/movies/278/parties/new?title=The%20Shawshank%20Redemption&runtime=147"
+		visit "/dashboard/movies/278/parties/new?title=The%20Shawshank%20Redemption&runtime=147"
   end
 
   it "should have the movie title above the form" do
@@ -35,7 +35,7 @@ describe "Parties New Page", :vcr do
 		check "Sally"
 		click_button "Create Party"
 
-		expect(current_path).to eq(user_path(@user_1))
+		expect(current_path).to eq(user_path)
 	end
 
 	it 'does not allow creation of party if the duration is shorter than runtime of movie' do
@@ -46,7 +46,7 @@ describe "Parties New Page", :vcr do
 		check "Sally"
 		click_button "Create Party"
 		
-		expect(current_path).to eq(new_user_movie_party_path(@user_1, 278))
+		expect(current_path).to eq(new_user_movie_party_path(278))
 		expect(page).to have_content("Duration of Party cannot be shorter than Movie Runtime")
 	end
 end

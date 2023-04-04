@@ -25,7 +25,7 @@ describe 'register page', :vcr do
 
 			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-			expect(current_path).to eq(user_path(user))
+			expect(current_path).to eq(user_path)
 		end
 	end
 
@@ -45,7 +45,7 @@ describe 'register page', :vcr do
 
 			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-			expect(current_path).to eq(user_path(user))
+			expect(current_path).to eq(user_path)
 		end
 	end
 

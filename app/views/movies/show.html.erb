@@ -1,4 +1,4 @@
-<p><%= button_to "Create Viewing Party", new_user_movie_party_path(@user, @movie.id), params: {title: @movie.title, runtime: @movie.runtime, image_path: @movie.image}, class: "btn btn-outline-primary", method: :get %></p>
+<p><%= button_to "Create Viewing Party", new_user_movie_party_path(@movie.id), params: {title: @movie.title, runtime: @movie.runtime, image_path: @movie.image}, class: "btn btn-outline-primary", method: :get %></p>
 
 <p><%= button_to "Return to Discover Page", user_discover_index_path(@user), class: "btn btn-outline-info", method: :get %></p>
 

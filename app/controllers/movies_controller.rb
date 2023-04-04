@@ -5,11 +5,11 @@ class MoviesController < ApplicationController
 		else
 			@movies = MovieFacade.new.popular_movies
 		end
-    @user= User.find(params[:user_id])
+    @user= current_user
   end
 
 	def show
-		@user = User.find(params[:user_id])
+		@user = current_user
     @movie = MovieFacade.new.all_movie_details(params[:id])
 	end
 end

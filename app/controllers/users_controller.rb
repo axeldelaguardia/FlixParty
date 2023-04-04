@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 		new_user = User.new(user_params)
 		if new_user.save
 			session[:user_id] = new_user.id
-			redirect_to user_path(new_user)
+			redirect_to user_path
 		else
 			flash[:alert] = error_message(new_user.errors)
 			redirect_to register_path
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 		if user && user.authenticate(params[:password])
 			session[:user_id] = user.id
 			flash[:success] = "Welcome, #{user.name}!"
-			redirect_to user_path(user)
+			redirect_to user_path
 		else
 			invalid_credentials
 		end
