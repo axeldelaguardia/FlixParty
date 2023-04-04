@@ -26,13 +26,10 @@ class UsersController < ApplicationController
 
 	def login_user
 		user = User.find_by(email: params[:email])
-		if user
-			if user.authenticate(params[:password])
-				session[:user_id] = user.id
-				redirect_to user_path(user)
-			else
-				invalid_credentials
-			end
+		if user && user.authenticate(params[:password])
+			session[:user_id] = user.id
+			flash[:success] = "Welcome, #{user.name}!"
+			redirect_to user_path(user)
 		else
 			invalid_credentials
 		end
@@ -51,5 +48,15 @@ class UsersController < ApplicationController
 	def invalid_credentials
 		flash.now[:alert] = "Email or password is invalid"
 		render :login_form, status: 400
+	end
+
+	def user_role
+		if user.admin?
+			redirect_to admin_dashboard_path
+		elsif user.manager?
+			redirect_to root_path
+		else
+			redirect_to root_path
+		end
 	end
 end

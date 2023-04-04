@@ -27,22 +27,30 @@
 						<li class="nav-item">
 							<a class="nav-link active" aria-current="page" href="/">Home</a>
 						</li>
+						
+						<% if !@user.nil? && !@user.name.nil? %>
+
+						<li class="nav-item">
+							<a class="nav-link" href="/logout">Log Out</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Users</a>
+							<ul class="dropdown-menu">
+								<% @users.each do |user| %>
+									<li class="dropdown-item"><%= user.email %></li>
+								<% end %>
+								
+							</ul>
+
+						<% else %>
 						<li class="nav-item">
 							<a class="nav-link" href="/register">Register</a>
 						</li>
-							<li class="nav-item">
-						<% if @user %>
-								<a class="nav-link" href="/logout">Log Out</a>
-						<% else %>
-								<a class="nav-link" href="/login">Log In</a>
-						<% end %>
-							</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Users</a>
+						<li class="nav-item">
+							<a class="nav-link" href="/login">Log In</a>
 						</li>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="/">View All Users</a></li>
-						</ul>
+						<% end %>
+
 					</ul>
 					<form class="d-flex" role="search">
 						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
